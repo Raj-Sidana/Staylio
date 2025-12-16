@@ -7,8 +7,21 @@
 </head>
 <body>
     <h3>Edit Listing Info</h3>
-    <form method="POST" action="/listings">
-        <input type="text">
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+        <br><br>
+        <input type="text" name="listing[title]" value="<%= listing.title %>">
+        <br><br>
+        <textarea name="listing[description]" id="description"><%= listing.description %></textarea>
+        <br><br>
+        <input type="text" name="listing[image][url]" value="<%= listing.image.url %>">
+        <br><br>
+        <input type="number" name="listing[price]" value="<%= listing.price %>">
+        <br><br>
+        <input type="text" name="listing[location]" value="<%= listing.location %>">
+        <br><br>
+        <input type="text" name="listing[country]" value="<%= listing.country %>">
+        <br><br>
+        <button type="submit">Edit Listing</button>
     </form>
 </body>
 </html>

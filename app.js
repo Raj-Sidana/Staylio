@@ -3,11 +3,13 @@ const app = express();
 const mongoose = require('mongoose');
 const MONGO_URL = 'mongodb://localhost:27017/staylio';
 const Listing = require('./models/listings.js');
+const methodOverride = require('method-override')
 const path = require('path');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended : true}));
+app.use(methodOverride('_method'))
 
 main().then(() => {
     console.log('Connected to MongoDB');
@@ -43,28 +45,32 @@ app.get("/listings/:id", async (req, res) => {
 
 // Create Route
 app.post("/listings", async (req, res) => {
-    const newListing = new Listing(req.body.listing);
-    await newListing.save();
+        const newListing = new Listing(req.body.listing);
+        await newListing.save();
+        res.redirect("/listings");
+});
+
+// Edit Route
+app.get("/listings/:id/edit", async (req, res) => {
+    let {id} = req.params;
+    let listing = await Listing.findById(id);
+    res.render("listings/edit.ejs", {listing});
+});
+
+// Upadte Route
+app.put("/listings/:id", async (req,res) => {
+    let {id} = req.params;
+    let listing = await Listing.findByIdAndUpdate(id, req.body.listing);
+    res.redirect(`/listings/${id}`);
+});
+
+// Delete Route
+app.delete("/listings/:id", async (req, res) => {
+    let {id} = req.params;
+    let deletedListing = await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
-})
-
-
+});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
-})
-
-// app.get("/testlistings", async (req, res) => {
-//     let sampleListing = new Listing ({
-//         title: "Cozy Cottage",
-//         description: "A cozy cottage in the countryside.",
-//         price: 120,
-//         location: "Countryside",
-//         country: "Wonderland",
-//     });
-
-//     await sampleListing.save();
-//     res.send("Sample listing created");
-    
-// });
-
+});
