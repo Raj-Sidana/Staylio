@@ -3,13 +3,16 @@ const app = express();
 const mongoose = require('mongoose');
 const MONGO_URL = 'mongodb://localhost:27017/staylio';
 const Listing = require('./models/listings.js');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const ejsMate = require("ejs-mate");
 const path = require('path');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static("public"));
 app.use(express.urlencoded({extended : true}));
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
+app.engine("ejs", ejsMate);
 
 main().then(() => {
     console.log('Connected to MongoDB');
