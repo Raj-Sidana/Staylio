@@ -2,16 +2,53 @@ body {
     background-color: pink;
 }
 
+/* navbar */
 .navbar {
     background-color: white;
     height: 5rem;
 }
 
+/* navbar */
 fa-compass {
     color: #fe424d;
     font-size: 2rem;
 }
 
-nav.link {
+/* navbar */nav.link {
     color: #222222 !important; 
+}
+
+/* footer */
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+    vertical-align: middle;
+}   
+
+/* footer */
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+/* footer */
+.f-info-links, .f-info-social, .f-info-brand {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+} 
+
+/* footer */
+.f-info-social {
+    font-size: 1.2rem;
+}
+
+/* footer */
+.f-info {
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
 }
