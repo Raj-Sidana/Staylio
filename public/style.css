@@ -1,5 +1,12 @@
 body {
     background-color: pink;
+    display: flex;
+    flex-direction: column;
+    min-height : 100vh;
+}
+
+.container-fluid {
+    flex: 1;
 }
 
 
@@ -21,8 +28,8 @@ body {
 }
 
 /* navbar */
-fa-compass {
-    color: #fe424d;
+.fa-compass {
+    color: #fe424d !important;
     font-size: 2rem;
 }
 
@@ -98,3 +105,10 @@ fa-compass {
     background-color: white;
 }
 
+/* New Page */
+
+.add-btn {
+    color: white;
+    background-color: #fe424d !important;
+    border: none !important;
+}
