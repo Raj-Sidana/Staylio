@@ -112,3 +112,31 @@ body {
     background-color: #fe424d !important;
     border: none !important;
 }
+
+/* Edit Page */
+.edit-btn {
+    color: white;
+    background-color: #fe424d !important;
+    border: none !important;;
+}
+
+/* Show Page */
+.show_img {
+    height: 30vh;
+}
+
+.show-btns {
+    display: flex;
+}
+
+.show-cards {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.show-edit-btn {
+   color: white;
+    background-color: #fe424d !important;
+    border: none !important;
+} 
+
