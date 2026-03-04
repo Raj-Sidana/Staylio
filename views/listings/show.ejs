@@ -24,9 +24,7 @@
 </div>
 
  <div class="show-btns">
-        <form method="GET" class="btn offset-3 edit-btn" action="/listings/<%= listing._id %>/edit"> <button>Edit</button> </form>
+        <form method="GET" class="offset-3 edit-btn" action="/listings/<%= listing._id %>/edit"> <button class="btn btn-primary">Edit</button> </form>
         
-        <form method="POST" class="btn btn-dark offset-1" action="/listings/<%= listing._id %>/?_method=DELETE"> <button>Delete</button> </form>
+        <form method="POST" class="offset-1" action="/listings/<%= listing._id %>/?_method=DELETE"> <button class="btn btn-danger">Delete</button> </form>
     </div>
-
-    
