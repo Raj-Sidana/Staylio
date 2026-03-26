@@ -3,7 +3,7 @@
 
     <div class="col-md-8 offset-3 mt-2">
 
-        <h3> Listing Details </h3>
+        <h3><%= listing.title %></h3>
 
     </div>
 
@@ -11,7 +11,6 @@
         <img src="<%= listing.image.url %>" class="card-img-top show_img" alt="listing_image">
   <div class="card-body">
     <p class="card-text">
-        <b><%= listing.title %></b> <br>
         <%= listing.description %><br>
         <%= listing.location %><br>
         <%= listing.country %><br>
