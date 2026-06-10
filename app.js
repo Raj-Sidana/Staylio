@@ -65,7 +65,7 @@ app.get("/listings/new", wrapAsync(async (req, res) => {
 // Show Route
 app.get("/listings/:id", wrapAsync(async (req, res) => {
     let {id} = req.params;
-    let listing = await Listing.findById(id);
+    let listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", {listing});
 }));
 
@@ -97,8 +97,8 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
     res.redirect("/listings");
 }));
 
-// Review 
-// Post Route
+
+// Review Post Route
 app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req,res) => {
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
@@ -116,5 +116,14 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+    console.log(`Server is running at http://localhost:3000/listings`);
 });
+
+// Review Delete Route
+
+app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async (req, res) => {
+    let {id, reviewId} = req.params;
+    await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+}));
